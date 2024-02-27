@@ -6,17 +6,14 @@ import {
   NunitoSans_700Bold,
 } from "@expo-google-fonts/nunito-sans";
 import theme from "src/theme";
+import { Routes } from "src/routes";
 
 export default function App() {
   const [fontsLoaded] = useFonts({ NunitoSans_400Regular, NunitoSans_700Bold });
   return (
     <ThemeProvider theme={theme}>
       <StatusBar backgroundColor="transparent" translucent />
-      {fontsLoaded ? (
-        <Text>Open up App.js to start working on your app!</Text>
-      ) : (
-        <Text>Loading</Text>
-      )}
+      {fontsLoaded ? <Routes /> : <Text>Loading</Text>}
     </ThemeProvider>
   );
 }
