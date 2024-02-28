@@ -2,7 +2,7 @@ import { Box } from "@components/Box";
 import { Icon } from "@components/Icon";
 import { MealStatistic } from "@components/MealStatistic";
 import { useNavigation } from "@react-navigation/native";
-import { iconColorMap } from "@utils/icon-helpers";
+import { iconColorMap } from "@utils/icon-utils";
 import { TouchableOpacity } from "react-native";
 
 export function MealStatisticButton() {

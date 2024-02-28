@@ -6,16 +6,10 @@ export const HeaderContainer = styled.View`
   justify-content: space-between;
 
   width: 100%;
+  margin-bottom: 36px;
 `;
 
 export const Logo = styled.Image`
   height: 37px;
   width: 82px;
-`;
-
-export const Avatar = styled.Image`
-  height: 40px;
-  width: 40px;
-  border-radius: 50%;
-  border: 2px solid ${({ theme }) => theme.COLORS.GRAY_200};
 `;

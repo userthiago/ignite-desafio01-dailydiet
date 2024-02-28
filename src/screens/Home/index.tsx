@@ -1,11 +1,19 @@
-import { Text, View } from "react-native";
-import { HomeContainer } from "./styles";
 import { Header } from "@components/Header";
+import { Button } from "@components/Button";
+import { LayoutContainer } from "@components/LayoutContainer";
+import { MealStatisticButton } from "@components/MealStatisticButton";
+
+import { NewMealContainer, NewMealTitle } from "./styles";
 
 export function Home() {
   return (
-    <HomeContainer>
+    <LayoutContainer style={{ padding: 24 }}>
       <Header />
-    </HomeContainer>
+      <MealStatisticButton />
+      <NewMealContainer>
+        <NewMealTitle>Refeições</NewMealTitle>
+        <Button label="Nova refeição" icon="plus" />
+      </NewMealContainer>
+    </LayoutContainer>
   );
 }

@@ -17,13 +17,13 @@ export type IconType =
 
 export type IconColorsType = "black" | "white" | "green" | "red";
 
-type IconProps = {
+type IconProps = PhosphorIconProps & {
   name: IconType;
   color?: IconColorsType;
   size?: number;
 };
 
-export function Icon({ name, color = "black", size = 24 }: IconProps) {
+export function Icon({ name, color = "black", size = 24, ...rest }: IconProps) {
   const { COLORS } = useTheme();
   const colors: Record<IconColorsType, string> = {
     black: COLORS.GRAY_100,
@@ -42,5 +42,5 @@ export function Icon({ name, color = "black", size = 24 }: IconProps) {
 
   const IconComponent = icon[name];
 
-  return <IconComponent size={size} color={colors[color]} />;
+  return <IconComponent size={size} color={colors[color]} {...rest} />;
 }
