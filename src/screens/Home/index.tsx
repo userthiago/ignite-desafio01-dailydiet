@@ -1,4 +1,4 @@
-import { Header } from "@components/Header";
+import { HomeHeader } from "@components/HomeHeader";
 import { Button } from "@components/Button";
 import { LayoutContainer } from "@components/LayoutContainer";
 import { MealStatisticButton } from "@components/MealStatisticButton";
@@ -10,17 +10,28 @@ import { mealList } from "@storage/meals/temp";
 import { MealListHeader } from "@components/MealListHeader";
 import { MaskedView } from "@components/MaskedView";
 import { MaskedElement } from "@components/MaskedElement";
+import { useNavigation } from "@react-navigation/native";
 
 export function Home() {
+  const navigation = useNavigation();
+
+  const handleGoToAddMealScreen = () => {
+    navigation.navigate("registermeal");
+  };
+
   return (
     <LayoutContainer
       style={{ paddingTop: 24, paddingLeft: 24, paddingRight: 24 }}
     >
-      <Header />
+      <HomeHeader />
       <MealStatisticButton />
       <NewMealContainer>
         <NewMealTitle>Refeições</NewMealTitle>
-        <Button label="Nova refeição" icon="plus" />
+        <Button
+          label="Nova refeição"
+          icon="plus"
+          onPress={handleGoToAddMealScreen}
+        />
       </NewMealContainer>
       <MaskedView maskElement={<MaskedElement />}>
         <SectionList

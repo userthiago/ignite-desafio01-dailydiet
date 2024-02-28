@@ -1,38 +1,23 @@
 import { AccomplishmentTypes } from "@utils/types/accomplishment-types";
-import { SafeAreaView } from "react-native-safe-area-context";
-import { css } from "styled-components";
-import styled from "styled-components/native";
+import { StyledLayoutContainer } from "./styles";
+import { SafeAreaViewProps } from "react-native-safe-area-context";
 
-type ContainerProps = {
+type ContainerProps = SafeAreaViewProps & {
   variant?: AccomplishmentTypes;
 };
 
-export const LayoutContainer = styled(SafeAreaView)<ContainerProps>`
-  flex: 1;
-
-  width: 100%;
-
-  ${({ theme, variant }) => {
-    if (variant === "SUCCESS") {
-      return css`
-        background-color: ${theme.COLORS.GREEN_LIGHT};
-      `;
-    }
-
-    if (variant === "FAILURE") {
-      return css`
-        background-color: ${theme.COLORS.RED_LIGHT};
-      `;
-    }
-
-    if (variant === "NEUTRAL") {
-      return css`
-        background-color: ${theme.COLORS.GRAY_500};
-      `;
-    }
-
-    return css`
-      background-color: ${theme.COLORS.WHITE};
-    `;
-  }}
-`;
+export function LayoutContainer({
+  children,
+  variant,
+  ...rest
+}: ContainerProps) {
+  return (
+    <StyledLayoutContainer
+      edges={["top", "right", "left"]}
+      variant={variant}
+      {...rest}
+    >
+      {children}
+    </StyledLayoutContainer>
+  );
+}

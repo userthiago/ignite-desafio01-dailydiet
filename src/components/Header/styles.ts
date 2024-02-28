@@ -1,15 +1,18 @@
-import styled from "styled-components/native";
+import styled, { css } from "styled-components/native";
 
 export const HeaderContainer = styled.View`
+  position: relative;
   flex-direction: row;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
 
-  width: 100%;
-  margin-bottom: 36px;
+  padding: 24px;
 `;
 
-export const Logo = styled.Image`
-  height: 37px;
-  width: 82px;
+export const Title = styled.Text`
+  ${({ theme }) => css`
+    color: ${theme.COLORS.GRAY_100};
+    font-size: ${theme.FONT_SIZE.LG}px;
+    font-family: ${theme.FONT_FAMILY.BOLD};
+  `}
 `;
