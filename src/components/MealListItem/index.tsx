@@ -18,7 +18,7 @@ export function MealListItem({ time, title, status }: MealListItemProps) {
     <MealListItemContainer>
       <Time>{time}</Time>
       <Divider />
-      <Title>{title}</Title>
+      <Title numberOfLines={1}>{title}</Title>
       <AccomplishmentStatus variant={status} />
     </MealListItemContainer>
   );

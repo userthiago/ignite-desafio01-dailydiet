@@ -10,6 +10,7 @@ export const MealListItemContainer = styled(TouchableOpacity)`
   padding: 14px 12px;
   border: 1px solid ${({ theme }) => theme.COLORS.GRAY_500};
   border-radius: 6px;
+  margin-bottom: 8px;
 `;
 
 export const Time = styled.Text`

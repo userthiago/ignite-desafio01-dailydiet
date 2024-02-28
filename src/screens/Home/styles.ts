@@ -1,4 +1,3 @@
-import { TouchableOpacity } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import styled from "styled-components/native";
 
@@ -13,6 +12,7 @@ export const NewMealContainer = styled.View`
   gap: 8px;
 
   margin-top: 40px;
+  margin-bottom: 12px;
 `;
 
 export const NewMealTitle = styled.Text`
