@@ -16,6 +16,9 @@ import { Button } from "@components/Button";
 import { InputRadio } from "@components/InputRadio";
 import { AccomplishmentTypes } from "@utils/types/accomplishment-types";
 import { useNavigation } from "@react-navigation/native";
+import { AppError } from "@utils/app-error";
+import { mealCreate } from "@storage/meal/meal-create";
+import { MealStorageDTO } from "@storage/meal/meal-storage-dto";
 
 export function RegisterMeal() {
   const [nameValue, setNameValue] = useState("");
@@ -43,17 +46,38 @@ export function RegisterMeal() {
     setRadioValue(value);
   };
 
-  const handleRegisterMeal = () => {
+  const handleRegisterMeal = async () => {
     if (
-      nameValue.trim().length === 0 ||
-      descriptionValue.trim().length === 0 ||
-      dateValue.length === 0 ||
-      timeValue.length === 0 ||
-      radioValue.length === 0
+      !nameValue.trim() ||
+      !descriptionValue.trim() ||
+      !dateValue ||
+      !timeValue ||
+      !radioValue
     ) {
       Alert.alert("Nova refeição", "É necessário preencher todos os campos.");
     } else {
-      navigation.navigate("home");
+      try {
+        const newMeal: Omit<MealStorageDTO, "id"> = {
+          title: nameValue,
+          date: dateValue,
+          status: radioValue,
+          time: timeValue,
+        };
+
+        await mealCreate(newMeal);
+        navigation.navigate("home");
+      } catch (error) {
+        if (error instanceof AppError) {
+          Alert.alert("Nova refeição", error.message);
+        } else {
+          console.log(error);
+
+          Alert.alert(
+            "Nova refeição",
+            "Não foi possível cadastrar uma nova refeição"
+          );
+        }
+      }
     }
   };
 
