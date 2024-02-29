@@ -1,5 +1,5 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { RegisterMeal } from "@screens/RegisterMeal";
+import { RegisterMeal } from "@screens/AddMeal";
 
 import { Home } from "@screens/Home";
 import { Statistics } from "@screens/Statistics";
