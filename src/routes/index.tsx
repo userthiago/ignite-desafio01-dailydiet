@@ -1,8 +1,10 @@
-import { NavigationContainer } from "@react-navigation/native";
 import { View } from "react-native";
-import { AppRoutes } from "./app.routes";
+import { NavigationContainer } from "@react-navigation/native";
 import { useTheme } from "styled-components/native";
-import { DietContextProvider } from "src/context/dietContext";
+
+import { DietContextProvider } from "@context/dietContext";
+
+import { AppRoutes } from "./app.routes";
 
 export function Routes() {
   const { COLORS } = useTheme();

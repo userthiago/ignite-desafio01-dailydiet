@@ -5,6 +5,8 @@ import { mealGetAll } from "./meal-get-all";
 import { MealStorageDTO } from "./meal-storage-dto";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { MEAL_COLLECTION } from "@storage/storage-config";
+import moment from "moment";
+import { dateFormat, dateInputFormat } from "src/config/data-config";
 
 export async function mealCreate(newMeal: Omit<MealStorageDTO, "id">) {
   try {
@@ -20,8 +22,9 @@ export async function mealCreate(newMeal: Omit<MealStorageDTO, "id">) {
     }
 
     const mealData: MealStorageDTO = {
-      id: uuid.v4() as string,
       ...newMeal,
+      id: uuid.v4() as string,
+      date: moment(newMeal.date, dateInputFormat).format(dateFormat),
     };
     const storage = JSON.stringify([...storedMeals, mealData]);
 

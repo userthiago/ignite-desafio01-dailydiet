@@ -1,24 +1,26 @@
-import { LayoutContainer } from "@components/LayoutContainer";
-import { Alert, Dimensions, Text, TouchableOpacity } from "react-native";
+import { useState } from "react";
+import { Alert, Dimensions } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 
-import { Header } from "@components/Header";
 import { ScreenContent } from "@components/ScreenContent";
+import { LayoutContainer } from "@components/LayoutContainer";
+import { Header } from "@components/Header";
 import { Input } from "@components/Input";
+import { InputDatepicker } from "@components/InputDatepicker";
+import { Button } from "@components/Button";
+import { InputRadio } from "@components/InputRadio";
+
+import { mealCreate } from "@storage/meal/meal-create";
+import { MealStorageDTO } from "@storage/meal/meal-storage-dto";
+import { AppError } from "@utils/app-error";
+import { AccomplishmentTypes } from "@utils/types/accomplishment-types";
+
 import {
   ActionAreaContainer,
   GroupColumnContainer,
   GroupRowContainer,
   GroupTitle,
 } from "./styles";
-import { InputDatepicker } from "@components/InputDatepicker";
-import { useState } from "react";
-import { Button } from "@components/Button";
-import { InputRadio } from "@components/InputRadio";
-import { AccomplishmentTypes } from "@utils/types/accomplishment-types";
-import { useNavigation } from "@react-navigation/native";
-import { AppError } from "@utils/app-error";
-import { mealCreate } from "@storage/meal/meal-create";
-import { MealStorageDTO } from "@storage/meal/meal-storage-dto";
 
 export function RegisterMeal() {
   const [nameValue, setNameValue] = useState("");

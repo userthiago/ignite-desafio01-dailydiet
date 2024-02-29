@@ -29,21 +29,25 @@ export function generateDietStatistics(data: MealGroupStorageDTO[]) {
     (meal) => meal.status === "FAILURE"
   ).length;
 
-  const generalPercentage = `${(
-    (totalMealWithinDiet * 100) /
-    totalMealRegistered
-  ).toFixed(2)}%`;
+  const generalPercentage =
+    totalMealRegistered > 0
+      ? (totalMealWithinDiet * 100) / totalMealRegistered
+      : 0;
 
   const bestSequenceOfMeals = getBestSequenceOfMeals(mealList);
   const accomplishmentStatus =
-    totalMealWithinDiet <= totalMealOutsideDiet ? "FAILURE" : "SUCCESS";
+    totalMealRegistered === 0
+      ? "NEUTRAL"
+      : totalMealWithinDiet <= totalMealOutsideDiet
+      ? "FAILURE"
+      : "SUCCESS";
 
   const dietStatistics: MealDietStorageDTO = {
     generalPercentage: generalPercentage,
-    bestSequenceOfMeals: `${bestSequenceOfMeals}`,
-    totalMealRegistered: `${totalMealRegistered}`,
-    totalMealWithinDiet: `${totalMealWithinDiet}`,
-    totalMealOutsideDiet: `${totalMealOutsideDiet}`,
+    bestSequenceOfMeals: bestSequenceOfMeals,
+    totalMealRegistered: totalMealRegistered,
+    totalMealWithinDiet: totalMealWithinDiet,
+    totalMealOutsideDiet: totalMealOutsideDiet,
     accomplishmentStatus: accomplishmentStatus,
   };
 

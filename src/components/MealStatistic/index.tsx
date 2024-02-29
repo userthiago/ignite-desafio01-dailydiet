@@ -7,7 +7,7 @@ export function MealStatistic() {
 
   return (
     <MealStatisticContainer>
-      <Percentage>{dietStatistics.generalPercentage}</Percentage>
+      <Percentage>{dietStatistics.generalPercentage.toFixed(2)}%</Percentage>
       <Text>das refeições dentro da dieta</Text>
     </MealStatisticContainer>
   );

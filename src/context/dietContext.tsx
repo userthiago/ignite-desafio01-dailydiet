@@ -27,11 +27,11 @@ export function DietContextProvider({
 }: DietContextProvider) {
   const [isLoading, setLoading] = useState(false);
   const [dietStatistics, setDietStatistic] = useState<MealDietStorageDTO>({
-    bestSequenceOfMeals: "0",
-    generalPercentage: "0%",
-    totalMealOutsideDiet: "0",
-    totalMealRegistered: "0",
-    totalMealWithinDiet: "0",
+    bestSequenceOfMeals: 0,
+    generalPercentage: 0,
+    totalMealOutsideDiet: 0,
+    totalMealRegistered: 0,
+    totalMealWithinDiet: 0,
     accomplishmentStatus: "NEUTRAL",
   });
   const [mealList, setMealList] = useState<MealGroupStorageDTO[]>([]);

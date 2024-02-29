@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { DietContext, DietContextData } from "src/context/dietContext";
+import { DietContext, DietContextData } from "@context/dietContext";
 
 export function useDietContext(): DietContextData {
   const context = useContext(DietContext);

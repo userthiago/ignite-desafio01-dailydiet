@@ -1,7 +1,9 @@
-import { Pressable, TextInputProps } from "react-native";
 import { useRef, useState } from "react";
-import { Datepicker, DatepickerModeTypes } from "@components/Datepicker";
+import { Pressable, TextInputProps } from "react-native";
 import { Modalize } from "react-native-modalize";
+
+import { Datepicker, DatepickerModeTypes } from "@components/Datepicker";
+
 import { InputContainer, InputLabel, StyledInput } from "./styles";
 
 type InputProps = Omit<TextInputProps, "onChange"> & {
