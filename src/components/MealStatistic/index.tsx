@@ -1,12 +1,13 @@
-import { useState } from "react";
+import { useDietContext } from "@hooks/use-diet-context";
+
 import { MealStatisticContainer, Percentage, Text } from "./styles";
 
 export function MealStatistic() {
-  const [dietPercentage, setDietPercentage] = useState(90.86);
+  const { dietStatistics } = useDietContext();
 
   return (
     <MealStatisticContainer>
-      <Percentage>{dietPercentage}%</Percentage>
+      <Percentage>{dietStatistics.generalPercentage}</Percentage>
       <Text>das refeições dentro da dieta</Text>
     </MealStatisticContainer>
   );

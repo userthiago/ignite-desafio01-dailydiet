@@ -1,11 +1,15 @@
+import { TouchableOpacity } from "react-native";
+import { useNavigation } from "@react-navigation/native";
+
 import { Box } from "@components/Box";
 import { Icon } from "@components/Icon";
 import { MealStatistic } from "@components/MealStatistic";
-import { useNavigation } from "@react-navigation/native";
+
+import { useDietContext } from "@hooks/use-diet-context";
 import { iconColorMap } from "@utils/icon-utils";
-import { TouchableOpacity } from "react-native";
 
 export function MealStatisticButton() {
+  const { dietStatistics } = useDietContext();
   const navigation = useNavigation();
 
   const handleGoToStatisticPage = () => {
@@ -14,11 +18,14 @@ export function MealStatisticButton() {
 
   return (
     <TouchableOpacity onPress={handleGoToStatisticPage}>
-      <Box variant="SUCCESS" style={{ height: 102 }}>
+      <Box
+        variant={dietStatistics.accomplishmentStatus}
+        style={{ height: 102 }}
+      >
         <MealStatistic />
         <Icon
           name="arrowUpRight"
-          color={iconColorMap["SUCCESS"]}
+          color={iconColorMap[dietStatistics.accomplishmentStatus]}
           style={{
             position: "absolute",
             top: 8,

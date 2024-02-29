@@ -1,5 +1,5 @@
-import { Alert, SectionList } from "react-native";
-import { useCallback, useState } from "react";
+import { useCallback } from "react";
+import { SectionList } from "react-native";
 import { useFocusEffect, useNavigation } from "@react-navigation/native";
 
 import { HomeHeader } from "@components/HomeHeader";
@@ -11,34 +11,16 @@ import { MealListHeader } from "@components/MealListHeader";
 import { MaskedView } from "@components/MaskedView";
 import { MaskedElement } from "@components/MaskedElement";
 
-import { mealGetAllAndGroupByDate } from "@storage/meal/meal-get-all-and-group-by-date";
-import { MealGroupStorageDTO } from "@storage/meal/meal-group-storage-dto";
+import { useDietContext } from "@hooks/use-diet-context";
 
 import { NewMealContainer, NewMealTitle } from "./styles";
 
 export function Home() {
-  const [isLoading, setLoading] = useState(false);
-  const [mealList, setMealList] = useState<MealGroupStorageDTO[]>([]);
   const navigation = useNavigation();
+  const { mealList, fetchMealList } = useDietContext();
 
   const handleGoToAddMealScreen = () => {
     navigation.navigate("registermeal");
-  };
-
-  const fetchMealList = async () => {
-    try {
-      setLoading(true);
-      const data = await mealGetAllAndGroupByDate();
-      setMealList(data);
-    } catch (error) {
-      console.log(error);
-      Alert.alert(
-        "Refeições",
-        "Não foi possível carregar as refeições cadastradas."
-      );
-    } finally {
-      setLoading(false);
-    }
   };
 
   useFocusEffect(

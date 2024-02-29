@@ -1,30 +1,28 @@
-import { useMemo, useState } from "react";
-import { HeaderContainer } from "./styles";
+import { useNavigation } from "@react-navigation/native";
+
 import { MealStatistic } from "@components/MealStatistic";
 import { LayoutContainer } from "@components/LayoutContainer";
-import { AccomplishmentTypes } from "@utils/types/accomplishment-types";
 import { ButtonIcon } from "@components/ButtonIcon";
-import { useNavigation } from "@react-navigation/native";
+
 import { iconColorMap } from "@utils/icon-utils";
+import { useDietContext } from "@hooks/use-diet-context";
+
+import { HeaderContainer } from "./styles";
 
 export function Statistics() {
+  const { dietStatistics } = useDietContext();
   const navigation = useNavigation();
-  const [dietPercentage, setDietPercentage] = useState(90.86);
-  const variant = useMemo<AccomplishmentTypes>(
-    () => (dietPercentage > 50 ? "SUCCESS" : "NEUTRAL"),
-    [dietPercentage]
-  );
 
   const handleGoBackPage = () => {
     navigation.navigate("home");
   };
 
   return (
-    <LayoutContainer variant={variant}>
+    <LayoutContainer variant={dietStatistics.accomplishmentStatus}>
       <HeaderContainer>
         <ButtonIcon
           name="arrowLeft"
-          color={iconColorMap[variant]}
+          color={iconColorMap[dietStatistics.accomplishmentStatus]}
           onPress={handleGoBackPage}
         />
         <MealStatistic />
