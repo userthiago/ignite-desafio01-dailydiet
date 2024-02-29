@@ -10,6 +10,7 @@ import moment from "moment";
 import { Button } from "@components/Button";
 
 import { ButtonGroupContainer, DatepickerContainer, Title } from "./styles";
+import { dateFormat, timeFormat } from "src/config/data-config";
 
 export type DatepickerModeTypes = "date" | "time";
 
@@ -57,8 +58,8 @@ export function Datepicker({
     const date = newDate ?? dateValue;
     const value =
       mode === "date"
-        ? moment(date).format("D/MM/YYYY")
-        : moment(date).format("HH:mm");
+        ? moment(date).format(dateFormat)
+        : moment(date).format(timeFormat);
     onChange(value);
     onCloseDatepicker();
   };
