@@ -1,5 +1,6 @@
-import { AvatarContainer, AvatarImage } from "./styles";
 import avatarImg from "@assets/avatar.jpeg";
+
+import { AvatarContainer, AvatarImage } from "./styles";
 
 export function Avatar() {
   return (

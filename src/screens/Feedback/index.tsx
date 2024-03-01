@@ -1,4 +1,12 @@
+import { useNavigation, useRoute } from "@react-navigation/native";
+
 import { LayoutContainer } from "@components/LayoutContainer";
+import { Button } from "@components/Button";
+
+import { AccomplishmentTypes } from "@utils/types/accomplishment-types";
+import successImg from "@assets/success.png";
+import failureImg from "@assets/failure.png";
+
 import {
   FeedbackContainer,
   FeedbackImage,
@@ -7,12 +15,6 @@ import {
   FeedbackTextGroup,
   FeedbackTitle,
 } from "./styles";
-import { AccomplishmentTypes } from "@utils/types/accomplishment-types";
-import { useNavigation, useRoute } from "@react-navigation/native";
-
-import successImg from "@assets/success.png";
-import failureImg from "@assets/failure.png";
-import { Button } from "@components/Button";
 
 type RouteParams = {
   type: AccomplishmentTypes;

@@ -1,6 +1,8 @@
 import { Avatar } from "@components/Avatar";
-import { HeaderContainer, Logo } from "./styles";
+
 import logoImg from "@assets/logo.png";
+
+import { HeaderContainer, Logo } from "./styles";
 
 export function HomeHeader() {
   return (

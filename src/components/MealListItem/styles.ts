@@ -1,6 +1,7 @@
-import { AccomplishmentTypes } from "@utils/types/accomplishment-types";
 import { TouchableOpacity } from "react-native";
 import styled, { css } from "styled-components/native";
+
+import { AccomplishmentTypes } from "@utils/types/accomplishment-types";
 
 export const MealListItemContainer = styled(TouchableOpacity)`
   flex-direction: row;

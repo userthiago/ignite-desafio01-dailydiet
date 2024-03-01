@@ -1,5 +1,6 @@
-import { Icon, IconColorsType, IconType } from "@components/Icon";
 import { TouchableOpacity, TouchableOpacityProps } from "react-native";
+
+import { Icon, IconColorsType, IconType } from "@components/Icon";
 
 type ButtonIconProps = TouchableOpacityProps & {
   name: IconType;

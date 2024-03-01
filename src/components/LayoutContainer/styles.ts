@@ -1,7 +1,8 @@
-import { AccomplishmentTypes } from "@utils/types/accomplishment-types";
-import { SafeAreaView } from "react-native-safe-area-context";
 import { css } from "styled-components";
 import styled from "styled-components/native";
+import { SafeAreaView } from "react-native-safe-area-context";
+
+import { AccomplishmentTypes } from "@utils/types/accomplishment-types";
 
 type ContainerProps = {
   variant?: AccomplishmentTypes;

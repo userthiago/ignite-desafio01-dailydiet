@@ -1,6 +1,8 @@
-import { ButtonIcon } from "@components/ButtonIcon";
-import { HeaderContainer, Title } from "./styles";
 import { useNavigation } from "@react-navigation/native";
+
+import { ButtonIcon } from "@components/ButtonIcon";
+
+import { HeaderContainer, Title } from "./styles";
 
 type HeaderProps = {
   title: string;

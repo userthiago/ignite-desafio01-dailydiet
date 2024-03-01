@@ -1,6 +1,8 @@
-import { AccomplishmentTypes } from "@utils/types/accomplishment-types";
-import { FlagContainer, FlagText } from "./styles";
 import { Bullet } from "@components/Bullet";
+
+import { AccomplishmentTypes } from "@utils/types/accomplishment-types";
+
+import { FlagContainer, FlagText } from "./styles";
 
 type FlagProps = {
   text: string;

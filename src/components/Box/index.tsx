@@ -1,5 +1,6 @@
-import { AccomplishmentTypes } from "@utils/types/accomplishment-types";
 import styled, { css } from "styled-components/native";
+
+import { AccomplishmentTypes } from "@utils/types/accomplishment-types";
 
 type BoxProps = {
   variant: AccomplishmentTypes;

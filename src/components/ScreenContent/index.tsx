@@ -1,4 +1,5 @@
 import { ViewProps } from "react-native";
+
 import { ScreenContentContainer } from "./styles";
 
 type ScreenContentProps = ViewProps;

@@ -1,10 +1,12 @@
 import { TouchableOpacityProps } from "react-native-gesture-handler";
+
+import { Bullet } from "@components/Bullet";
+
 import {
   InputRadioContainer,
   InputRadioText,
   InputRadioVariantTypes,
 } from "./styles";
-import { Bullet } from "@components/Bullet";
 
 type InputRadioProps = TouchableOpacityProps & {
   title: string;

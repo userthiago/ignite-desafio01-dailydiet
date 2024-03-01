@@ -1,6 +1,8 @@
-import { Icon, IconColorsType, IconType } from "@components/Icon";
-import { ButtonContainer, ButtonText, ButtonVariantType } from "./style";
 import { TouchableOpacityProps } from "react-native";
+
+import { Icon, IconColorsType, IconType } from "@components/Icon";
+
+import { ButtonContainer, ButtonText, ButtonVariantType } from "./style";
 
 type ButtonProps = TouchableOpacityProps & {
   label: string;
