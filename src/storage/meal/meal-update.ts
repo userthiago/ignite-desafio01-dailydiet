@@ -1,8 +1,10 @@
-import { AppError } from "@utils/app-error";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+
 import { mealGetAll } from "./meal-get-all";
 import { MealStorageDTO } from "./meal-storage-dto";
-import AsyncStorage from "@react-native-async-storage/async-storage";
+
 import { MEAL_COLLECTION } from "@storage/storage-config";
+import { AppError } from "@utils/app-error";
 
 export async function mealUpdate(updatedMeal: MealStorageDTO) {
   try {

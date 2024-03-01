@@ -34,6 +34,7 @@ type RouteParams = {
 export function EditMeal() {
   const { params } = useRoute();
   const { id } = params as RouteParams;
+
   const [isLoading, setLoading] = useState(true);
   const [nameValue, setNameValue] = useState("");
   const [descriptionValue, setDescriptionValue] = useState("");
@@ -138,7 +139,6 @@ export function EditMeal() {
       }
     }
   };
-
   useFocusEffect(
     useCallback(() => {
       fetchMealData();
@@ -160,7 +160,7 @@ export function EditMeal() {
 
   return (
     <LayoutContainer variant={"NEUTRAL"}>
-      <Header title="Nova refeição" />
+      <Header title="Editar refeição" />
       <ScreenContent style={{ gap: 20 }}>
         <Input
           title="Nome"

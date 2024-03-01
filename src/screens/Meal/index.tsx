@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { useCallback, useRef, useState } from "react";
 import { Alert } from "react-native";
 import {
   useFocusEffect,
@@ -24,12 +24,15 @@ import {
   TextSubtitle,
   TextTitle,
 } from "./styles";
+import { Modalize } from "react-native-modalize";
+import { RemoveMealModal } from "@components/RemoveMealModal";
 
 type RouteParams = {
   id: string;
 };
 
 export function Meal() {
+  const removeMealModalRef = useRef<Modalize>(null);
   const [isLoading, setLoading] = useState(true);
   const [data, setData] = useState<MealStorageDTO | undefined>();
   const navigation = useNavigation();
@@ -74,6 +77,10 @@ export function Meal() {
     navigation.navigate("editmeal", { id: id });
   };
 
+  const handleOpenRemoveMealModal = () => {
+    removeMealModalRef.current?.open();
+  };
+
   useFocusEffect(
     useCallback(() => {
       fetchMealData();
@@ -94,29 +101,37 @@ export function Meal() {
   }
 
   return (
-    <LayoutContainer variant={data.status}>
-      <Header title="Refeição" />
-      <ScreenContent style={{ gap: 24 }}>
-        <TextGroupContainer>
-          <TextTitle>{data.title}</TextTitle>
-          <TextDescription>{data.description}</TextDescription>
-        </TextGroupContainer>
-        <TextGroupContainer>
-          <TextSubtitle>Data e hora</TextSubtitle>
-          <TextDescription>
-            {data.date} às {data.time}
-          </TextDescription>
-        </TextGroupContainer>
-        <Flag status={data.status} text={StatusTextEnum[data.status]} />
-        <ActionGroupContainer>
-          <Button
-            label="Editar refeição"
-            icon="pencilSimpleLine"
-            onPress={handleEditMeal}
-          />
-          <Button variant="secondary" label="Excluir refeição" icon="trash" />
-        </ActionGroupContainer>
-      </ScreenContent>
-    </LayoutContainer>
+    <>
+      <LayoutContainer variant={data.status}>
+        <Header title="Refeição" />
+        <ScreenContent style={{ gap: 24 }}>
+          <TextGroupContainer>
+            <TextTitle>{data.title}</TextTitle>
+            <TextDescription>{data.description}</TextDescription>
+          </TextGroupContainer>
+          <TextGroupContainer>
+            <TextSubtitle>Data e hora</TextSubtitle>
+            <TextDescription>
+              {data.date} às {data.time}
+            </TextDescription>
+          </TextGroupContainer>
+          <Flag status={data.status} text={StatusTextEnum[data.status]} />
+          <ActionGroupContainer>
+            <Button
+              label="Editar refeição"
+              icon="pencilSimpleLine"
+              onPress={handleEditMeal}
+            />
+            <Button
+              variant="secondary"
+              label="Excluir refeição"
+              icon="trash"
+              onPress={handleOpenRemoveMealModal}
+            />
+          </ActionGroupContainer>
+        </ScreenContent>
+      </LayoutContainer>
+      <RemoveMealModal id={id} removeMealModalRef={removeMealModalRef} />
+    </>
   );
 }
