@@ -41,6 +41,7 @@ export function RemoveMealModal({
           justifyContent: "center",
           backgroundColor: "transparent",
           marginBottom: "auto",
+          shadowColor: "transparent",
         }}
       >
         <RemoveMealModalContainer>

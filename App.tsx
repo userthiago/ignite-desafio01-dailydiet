@@ -17,7 +17,11 @@ export default function App() {
     <GestureHandlerRootView style={{ flex: 1 }}>
       <ThemeProvider theme={theme}>
         <Host>
-          <StatusBar backgroundColor="transparent" translucent />
+          <StatusBar
+            backgroundColor="transparent"
+            translucent
+            barStyle="dark-content"
+          />
           {fontsLoaded ? <Routes /> : <Text>Loading</Text>}
         </Host>
       </ThemeProvider>

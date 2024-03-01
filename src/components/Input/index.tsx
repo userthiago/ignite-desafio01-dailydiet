@@ -23,6 +23,7 @@ export function Input({
         focus={focus}
         variant={variant}
         multiline={variant === "textarea"}
+        textAlignVertical={variant === "textarea" ? "top" : "center"}
         onFocus={() => setFocus(true)}
         onBlur={() => setFocus(false)}
         selectTextOnFocus={false}
