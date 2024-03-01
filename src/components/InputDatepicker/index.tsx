@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import { Pressable, TextInputProps } from "react-native";
+import { Keyboard, Pressable, TextInputProps } from "react-native";
 import { Modalize } from "react-native-modalize";
 
 import { Datepicker, DatepickerModeTypes } from "@components/Datepicker";
@@ -25,6 +25,7 @@ export function InputDatepicker({
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
 
   function handleOpenDatepicker() {
+    Keyboard.dismiss();
     ref.current?.open();
     setDatePickerVisibility(true);
   }

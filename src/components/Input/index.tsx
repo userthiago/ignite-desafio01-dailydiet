@@ -25,6 +25,7 @@ export function Input({
         multiline={variant === "textarea"}
         onFocus={() => setFocus(true)}
         onBlur={() => setFocus(false)}
+        selectTextOnFocus={false}
         {...rest}
       />
     </InputContainer>
