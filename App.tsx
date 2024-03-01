@@ -1,20 +1,30 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StatusBar, Text } from "react-native";
+import { ThemeProvider } from "styled-components/native";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
+import { Host } from "react-native-portalize";
+import {
+  useFonts,
+  NunitoSans_400Regular,
+  NunitoSans_700Bold,
+} from "@expo-google-fonts/nunito-sans";
+
+import theme from "src/theme";
+import { Routes } from "src/routes";
 
 export default function App() {
+  const [fontsLoaded] = useFonts({ NunitoSans_400Regular, NunitoSans_700Bold });
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <GestureHandlerRootView style={{ flex: 1 }}>
+      <ThemeProvider theme={theme}>
+        <Host>
+          <StatusBar
+            backgroundColor="transparent"
+            translucent
+            barStyle="dark-content"
+          />
+          {fontsLoaded ? <Routes /> : <Text>Loading</Text>}
+        </Host>
+      </ThemeProvider>
+    </GestureHandlerRootView>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
