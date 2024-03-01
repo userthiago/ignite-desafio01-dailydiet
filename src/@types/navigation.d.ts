@@ -10,6 +10,9 @@ export declare global {
       editmeal: {
         id: string;
       };
+      feedback: {
+        type: string;
+      };
     }
   }
 }

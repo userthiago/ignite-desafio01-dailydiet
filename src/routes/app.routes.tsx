@@ -5,6 +5,7 @@ import { Meal } from "@screens/Meal";
 import { RegisterMeal } from "@screens/AddMeal";
 import { Statistics } from "@screens/Statistics";
 import { EditMeal } from "@screens/EditMeal";
+import { Feedback } from "@screens/Feedback";
 
 const { Navigator, Screen } = createNativeStackNavigator();
 
@@ -16,6 +17,7 @@ export function AppRoutes() {
       <Screen name="registermeal" component={RegisterMeal} />
       <Screen name="mealdata" component={Meal} />
       <Screen name="editmeal" component={EditMeal} />
+      <Screen name="feedback" component={Feedback} />
     </Navigator>
   );
 }

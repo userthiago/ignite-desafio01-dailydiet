@@ -68,7 +68,7 @@ export function RegisterMeal() {
         };
 
         await mealCreate(newMeal);
-        navigation.navigate("home");
+        navigation.navigate("feedback", { type: radioValue });
       } catch (error) {
         if (error instanceof AppError) {
           Alert.alert("Nova refeição", error.message);
