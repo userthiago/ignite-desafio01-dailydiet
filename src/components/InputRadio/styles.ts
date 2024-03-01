@@ -2,11 +2,11 @@ import { AccomplishmentTypes } from "@utils/types/accomplishment-types";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import styled, { css } from "styled-components/native";
 
-export type InputRadiosVariantTypes = Exclude<AccomplishmentTypes, "NEUTRAL">;
+export type InputRadioVariantTypes = Exclude<AccomplishmentTypes, "NEUTRAL">;
 
 type ContainerProps = {
   isSelected: boolean;
-  variant: InputRadiosVariantTypes;
+  variant: InputRadioVariantTypes;
 };
 
 export const InputRadioContainer = styled(TouchableOpacity)<ContainerProps>`
@@ -43,27 +43,4 @@ export const InputRadioText = styled.Text`
     font-size: ${theme.FONT_SIZE.SM}px;
     font-family: ${theme.FONT_FAMILY.BOLD};
   `}
-`;
-
-type InputRadioBulletProps = {
-  variant: InputRadiosVariantTypes;
-};
-
-export const InputRadioBullet = styled.View<InputRadioBulletProps>`
-  height: 8px;
-  width: 8px;
-  border-radius: 4px;
-
-  ${({ theme, variant }) => {
-    if (variant === "SUCCESS") {
-      return css`
-        background-color: ${theme.COLORS.GREEN_DARK};
-      `;
-    }
-    if (variant === "FAILURE") {
-      return css`
-        background-color: ${theme.COLORS.RED_DARK};
-      `;
-    }
-  }}
 `;

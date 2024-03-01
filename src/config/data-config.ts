@@ -1,3 +1,3 @@
-export const dateFormat = "D.MM.YYYY";
-export const dateInputFormat = "D/MM/YYYY";
+export const dateFormat = "DD.MM.YYYY";
+export const dateInputFormat = "DD/MM/YYYY";
 export const timeFormat = "HH:mm";

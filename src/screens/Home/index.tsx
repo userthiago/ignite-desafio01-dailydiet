@@ -54,6 +54,7 @@ export function Home() {
               time={item.time}
               title={item.title}
               status={item.status}
+              onPress={() => navigation.navigate("mealdata", { id: item.id })}
             />
           )}
           renderSectionHeader={({ section }) => (

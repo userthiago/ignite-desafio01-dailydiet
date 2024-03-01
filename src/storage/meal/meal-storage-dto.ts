@@ -5,5 +5,6 @@ export type MealStorageDTO = {
   date: string;
   time: string;
   title: string;
+  description: string;
   status: AccomplishmentTypes;
 };

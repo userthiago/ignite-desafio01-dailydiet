@@ -1,14 +1,14 @@
 import { TouchableOpacityProps } from "react-native-gesture-handler";
 import {
-  InputRadioBullet,
   InputRadioContainer,
   InputRadioText,
-  InputRadiosVariantTypes,
+  InputRadioVariantTypes,
 } from "./styles";
+import { Bullet } from "@components/Bullet";
 
 type InputRadioProps = TouchableOpacityProps & {
   title: string;
-  variant: InputRadiosVariantTypes;
+  variant: InputRadioVariantTypes;
   isSelected: boolean;
 };
 
@@ -20,7 +20,7 @@ export function InputRadio({
 }: InputRadioProps) {
   return (
     <InputRadioContainer variant={variant} isSelected={isSelected} {...rest}>
-      <InputRadioBullet variant={variant} />
+      <Bullet variant={variant} />
       <InputRadioText>{title}</InputRadioText>
     </InputRadioContainer>
   );

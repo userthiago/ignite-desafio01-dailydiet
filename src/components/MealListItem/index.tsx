@@ -11,11 +11,17 @@ type MealListItemProps = {
   time: string;
   title: string;
   status: AccomplishmentTypes;
+  onPress: () => void;
 };
 
-export function MealListItem({ time, title, status }: MealListItemProps) {
+export function MealListItem({
+  time,
+  title,
+  status,
+  onPress,
+}: MealListItemProps) {
   return (
-    <MealListItemContainer>
+    <MealListItemContainer onPress={onPress}>
       <Time>{time}</Time>
       <Divider />
       <Title numberOfLines={1}>{title}</Title>

@@ -60,7 +60,8 @@ export function RegisterMeal() {
     } else {
       try {
         const newMeal: Omit<MealStorageDTO, "id"> = {
-          title: nameValue,
+          title: nameValue.trim(),
+          description: descriptionValue.trim(),
           date: dateValue,
           status: radioValue,
           time: timeValue,

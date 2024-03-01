@@ -24,7 +24,6 @@ export async function mealCreate(newMeal: Omit<MealStorageDTO, "id">) {
     const mealData: MealStorageDTO = {
       ...newMeal,
       id: uuid.v4() as string,
-      date: moment(newMeal.date, dateInputFormat).format(dateFormat),
     };
     const storage = JSON.stringify([...storedMeals, mealData]);
 

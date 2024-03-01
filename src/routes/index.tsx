@@ -2,7 +2,7 @@ import { View } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { useTheme } from "styled-components/native";
 
-import { DietContextProvider } from "@context/dietContext";
+import { DietContextProvider } from "@context/DietContext";
 
 import { AppRoutes } from "./app.routes";
 
