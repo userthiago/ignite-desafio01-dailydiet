@@ -13,6 +13,7 @@ module.exports = function (api) {
             '@storage': './src/storage',
             '@utils': './src/utils',
             '@context': './src/context',
+            '@config': './src/config',
             '@hooks': './src/hooks',
           }
         }

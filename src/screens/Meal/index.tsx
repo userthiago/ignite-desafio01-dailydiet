@@ -1,18 +1,22 @@
+import { useCallback, useState } from "react";
 import { Alert } from "react-native";
-
-import { LayoutContainer } from "@components/LayoutContainer";
-import { ScreenContent } from "@components/ScreenContent";
-
-import { Header } from "@components/Header";
 import {
   useFocusEffect,
   useNavigation,
   useRoute,
 } from "@react-navigation/native";
-import { useCallback, useState } from "react";
+
+import { LayoutContainer } from "@components/LayoutContainer";
+import { ScreenContent } from "@components/ScreenContent";
+import { Header } from "@components/Header";
+import { Button } from "@components/Button";
+import { Flag } from "@components/Flag";
+
 import { MealStorageDTO } from "@storage/meal/meal-storage-dto";
 import { mealGetById } from "@storage/meal/meal-get-by-id";
 import { AppError } from "@utils/app-error";
+import { StatusTextEnum } from "@utils/enum/status-text-enum";
+
 import {
   ActionGroupContainer,
   TextDescription,
@@ -20,16 +24,13 @@ import {
   TextSubtitle,
   TextTitle,
 } from "./styles";
-import { Button } from "@components/Button";
-import { Flag } from "@components/Flag";
-import { StatusTextEnum } from "@utils/enum/status-text-enum";
 
 type RouteParams = {
   id: string;
 };
 
 export function Meal() {
-  const [isLoading, setLoading] = useState(false);
+  const [isLoading, setLoading] = useState(true);
   const [data, setData] = useState<MealStorageDTO | undefined>();
   const navigation = useNavigation();
   const { params } = useRoute();
@@ -69,6 +70,10 @@ export function Meal() {
     }
   };
 
+  const handleEditMeal = () => {
+    navigation.navigate("editmeal", { id: id });
+  };
+
   useFocusEffect(
     useCallback(() => {
       fetchMealData();
@@ -79,7 +84,11 @@ export function Meal() {
     return (
       <LayoutContainer variant="NEUTRAL">
         <Header title="Refeição" />
-        <ScreenContent style={{ gap: 12 }}></ScreenContent>
+        <ScreenContent style={{ gap: 12 }}>
+          <TextTitle>
+            Aguarde, estamos carregando os dados da refeição.
+          </TextTitle>
+        </ScreenContent>
       </LayoutContainer>
     );
   }
@@ -100,7 +109,11 @@ export function Meal() {
         </TextGroupContainer>
         <Flag status={data.status} text={StatusTextEnum[data.status]} />
         <ActionGroupContainer>
-          <Button label="Editar refeição" icon="pencilSimpleLine" />
+          <Button
+            label="Editar refeição"
+            icon="pencilSimpleLine"
+            onPress={handleEditMeal}
+          />
           <Button variant="secondary" label="Excluir refeição" icon="trash" />
         </ActionGroupContainer>
       </ScreenContent>

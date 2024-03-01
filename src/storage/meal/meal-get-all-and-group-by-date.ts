@@ -1,11 +1,9 @@
 import moment from "moment";
+
 import { mealGetAll } from "./meal-get-all";
 import { MealGroupStorageDTO } from "./meal-group-storage-dto";
-import {
-  dateFormat,
-  dateInputFormat,
-  timeFormat,
-} from "src/config/data-config";
+
+import { dateFormat, dateInputFormat, timeFormat } from "@config/data-config";
 
 export async function mealGetAllAndGroupByDate() {
   try {

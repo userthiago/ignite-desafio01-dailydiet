@@ -9,8 +9,9 @@ import moment from "moment";
 
 import { Button } from "@components/Button";
 
+import { timeFormat, dateInputFormat } from "@config/data-config";
+
 import { ButtonGroupContainer, DatepickerContainer, Title } from "./styles";
-import { timeFormat, dateInputFormat } from "src/config/data-config";
 
 export type DatepickerModeTypes = "date" | "time";
 
@@ -34,7 +35,9 @@ export function Datepicker({
   mode = "date",
 }: DatepickerProps) {
   const [dateValue, setDateValue] = useState<Date>(
-    value ? new Date(value) : new Date()
+    value
+      ? moment(value, mode === "date" ? dateInputFormat : timeFormat).toDate()
+      : new Date()
   );
   const maxmiumDate = mode === "date" ? new Date() : undefined;
 

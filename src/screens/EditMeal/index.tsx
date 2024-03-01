@@ -1,6 +1,10 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { Alert, Dimensions } from "react-native";
-import { useNavigation } from "@react-navigation/native";
+import {
+  useFocusEffect,
+  useNavigation,
+  useRoute,
+} from "@react-navigation/native";
 
 import { ScreenContent } from "@components/ScreenContent";
 import { LayoutContainer } from "@components/LayoutContainer";
@@ -10,7 +14,8 @@ import { InputDatepicker } from "@components/InputDatepicker";
 import { Button } from "@components/Button";
 import { InputRadio } from "@components/InputRadio";
 
-import { mealCreate } from "@storage/meal/meal-create";
+import { mealGetById } from "@storage/meal/meal-get-by-id";
+import { mealUpdate } from "@storage/meal/meal-update";
 import { MealStorageDTO } from "@storage/meal/meal-storage-dto";
 import { AppError } from "@utils/app-error";
 import { AccomplishmentTypes } from "@utils/types/accomplishment-types";
@@ -22,7 +27,14 @@ import {
   GroupTitle,
 } from "./styles";
 
-export function RegisterMeal() {
+type RouteParams = {
+  id: string;
+};
+
+export function EditMeal() {
+  const { params } = useRoute();
+  const { id } = params as RouteParams;
+  const [isLoading, setLoading] = useState(true);
   const [nameValue, setNameValue] = useState("");
   const [descriptionValue, setDescriptionValue] = useState("");
   const [dateValue, setDateValue] = useState("");
@@ -48,7 +60,49 @@ export function RegisterMeal() {
     setRadioValue(value);
   };
 
-  const handleRegisterMeal = async () => {
+  const handleSetMealData = (data: MealStorageDTO) => {
+    handleChangeNameValue(data.title);
+    handleChangeDescriptionValue(data.description);
+    handleChangeDateValue(data.date);
+    handleChangeTimeValue(data.time);
+    handleChangeRadioValue(data.status);
+  };
+
+  const fetchMealData = async () => {
+    try {
+      setLoading(true);
+      const data = await mealGetById(id);
+      handleSetMealData(data);
+    } catch (error) {
+      if (error instanceof AppError) {
+        Alert.alert("Editar Refeição", error.message, [
+          {
+            text: "Ok",
+            onPress: () => {
+              navigation.navigate("home");
+            },
+          },
+        ]);
+      } else {
+        Alert.alert(
+          "Editar Refeição",
+          "Não foi possível carregar as informações da refeição selecionada.",
+          [
+            {
+              text: "Ok",
+              onPress: () => {
+                navigation.navigate("home");
+              },
+            },
+          ]
+        );
+      }
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleEditMeal = async () => {
     if (
       !nameValue.trim() ||
       !descriptionValue.trim() ||
@@ -56,10 +110,11 @@ export function RegisterMeal() {
       !timeValue ||
       !radioValue
     ) {
-      Alert.alert("Nova refeição", "É necessário preencher todos os campos.");
+      Alert.alert("Editar refeição", "É necessário preencher todos os campos.");
     } else {
       try {
-        const newMeal: Omit<MealStorageDTO, "id"> = {
+        const newMeal: MealStorageDTO = {
+          id: id,
           title: nameValue.trim(),
           description: descriptionValue.trim(),
           date: dateValue,
@@ -67,22 +122,41 @@ export function RegisterMeal() {
           time: timeValue,
         };
 
-        await mealCreate(newMeal);
-        navigation.navigate("home");
+        await mealUpdate(newMeal);
+        navigation.navigate("mealdata", { id: id });
       } catch (error) {
         if (error instanceof AppError) {
-          Alert.alert("Nova refeição", error.message);
+          Alert.alert("Editar refeição", error.message);
         } else {
           console.log(error);
 
           Alert.alert(
-            "Nova refeição",
-            "Não foi possível cadastrar uma nova refeição."
+            "Editar refeição",
+            "Não foi possível editar a refeição selecionada."
           );
         }
       }
     }
   };
+
+  useFocusEffect(
+    useCallback(() => {
+      fetchMealData();
+    }, [])
+  );
+
+  if (isLoading) {
+    return (
+      <LayoutContainer variant={"NEUTRAL"}>
+        <Header title="Nova refeição" />
+        <ScreenContent style={{ gap: 20 }}>
+          <GroupTitle>
+            Aguarde, estamos carregando os dados da refeição.
+          </GroupTitle>
+        </ScreenContent>
+      </LayoutContainer>
+    );
+  }
 
   return (
     <LayoutContainer variant={"NEUTRAL"}>
@@ -134,7 +208,7 @@ export function RegisterMeal() {
           </GroupRowContainer>
         </GroupColumnContainer>
         <ActionAreaContainer>
-          <Button label="Cadastrar refeição" onPress={handleRegisterMeal} />
+          <Button label="Salvar alterações" onPress={handleEditMeal} />
         </ActionAreaContainer>
       </ScreenContent>
     </LayoutContainer>
